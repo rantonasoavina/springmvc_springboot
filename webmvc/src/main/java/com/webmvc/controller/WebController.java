@@ -71,14 +71,15 @@ public class WebController {
 	
 	
 	@RequestMapping("/findall")
-	public String findAll(){
+	public String findAll(Model model){
 		String result = "";
 		
 		for(Person cust : repository.findAll()){
 			result += cust.toString() + "<br>";
 		}
+		model.addAttribute("result", result);
 		
-		return result;
+		return "find";
 	}
 	
 	@RequestMapping("/findbyid")
