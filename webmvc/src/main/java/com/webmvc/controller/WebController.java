@@ -83,10 +83,12 @@ public class WebController {
 	}
 	
 	@RequestMapping("/findbyid")
-	public String findById(@RequestParam("id") long id){
+	public String findById(@RequestParam("id") long id, Model model){
 		String result = "";
 		result = repository.findById(id).toString();
-		return result;
+		model.addAttribute("result", result);
+		
+		return "find";
 	}
 	
 	@RequestMapping("/findbylastname")
