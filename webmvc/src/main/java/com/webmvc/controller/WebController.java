@@ -49,7 +49,10 @@ public class WebController {
     }
 	
 	@RequestMapping("/save")
-	public String process(){
+	public String process(Model model){
+		
+		String result = "";
+		
 		// save a single Person
 		repository.save(new Person("Jack", "Smith"));
 		
@@ -57,7 +60,13 @@ public class WebController {
 		repository.saveAll(Arrays.asList(new Person("Adam", "Johnson"), new Person("Kim", "Smith"),
 										new Person("David", "Williams"), new Person("Peter", "Davis")));
 		
-		return "Done";
+		for(Person cust : repository.findAll()){
+			result += cust.toString() + "<br>";
+		}
+		
+		model.addAttribute("result", result);
+		
+		return "find";
 	}
 	
 	
