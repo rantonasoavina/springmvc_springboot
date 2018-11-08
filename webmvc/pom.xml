@@ -15,7 +15,8 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.6.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository master1_master2_master3_master4 -->
+		<relativePath/> <!-- lookup parent from repository master1_master2_feat1_feat2_master3_master4 -->
+		
 	</parent>
 
 	<properties>
