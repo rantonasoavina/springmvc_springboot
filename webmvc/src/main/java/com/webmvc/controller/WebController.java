@@ -49,7 +49,10 @@ public class WebController {
     }
 	
 	@RequestMapping("/save")
-	public String process(){
+	public String process(Model model){
+		
+		String result = "";
+		
 		// save a single Person
 		repository.save(new Person("Jack", "Smith"));
 		
@@ -57,26 +60,35 @@ public class WebController {
 		repository.saveAll(Arrays.asList(new Person("Adam", "Johnson"), new Person("Kim", "Smith"),
 										new Person("David", "Williams"), new Person("Peter", "Davis")));
 		
-		return "Done";
+		for(Person cust : repository.findAll()){
+			result += cust.toString() + "<br>";
+		}
+		
+		model.addAttribute("result", result);
+		
+		return "find";
 	}
 	
 	
 	@RequestMapping("/findall")
-	public String findAll(){
+	public String findAll(Model model){
 		String result = "";
 		
 		for(Person cust : repository.findAll()){
 			result += cust.toString() + "<br>";
 		}
+		model.addAttribute("result", result);
 		
-		return result;
+		return "find";
 	}
 	
 	@RequestMapping("/findbyid")
-	public String findById(@RequestParam("id") long id){
+	public String findById(@RequestParam("id") long id, Model model){
 		String result = "";
 		result = repository.findById(id).toString();
-		return result;
+		model.addAttribute("result", result);
+		
+		return "find";
 	}
 	
 	@RequestMapping("/findbylastname")
